@@ -1,0 +1,8 @@
+<apex:page title="Display User Info" >
+ <apex:pageBlock title="Logged In User Information">
+    <apex:pageBlockSection >
+        <p>
+            {! $User.firstname}
+    
+        </p> </apex:pageBlockSection></apex:pageBlock>
+</apex:page>
