@@ -29,7 +29,7 @@ jobs:
       - run:
           name: Decrypt server key
           command:
-            openssl enc -nosalt -aes-256-cbc -d -in assets/server.key.enc -out assets/server.key -base64 -K $DECRYPT_KEY -iv $DECRYPT_IV
+            openssl enc -nosalt -* -d -in assets/server.key.enc -out assets/server.key -base64 -K $DECRYPT_KEY -iv $DECRYPT_IV
       - run:
           name: Authorize To Target Org
           command: sfdx force:auth:jwt:grant --instanceurl $ENDPOINT --clientid $CLIENT_ID --jwtkeyfile assets/server.key --username $USERNAME  --setalias ProdTest
