@@ -15,11 +15,17 @@ jobs:
       - run:
           name: Cd Into Directory
           command: cd sfdx
-
       - run:
-          name: Install Salesforce Cli
-          command: npm install sfdx-cli --global 
-
+          name: Download CLI
+          command: |
+            # Download cli
+            wget -qO- $DX_CLI_URL | tar xJ -C sfdx --strip-components 1
+      - run:
+          name: Install CLI
+          command: |
+            # Install the cli
+            ./sfdx/install
+            sfdx
       - run:
           name: Decrypt server key
           command:
