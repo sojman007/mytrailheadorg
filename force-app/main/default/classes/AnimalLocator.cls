@@ -1,8 +1,9 @@
 public class AnimalLocator{
+  private static final string requestEndPoint = 'https://th-apex-http-callout.herokuapp.com/animals/';
     public static String getAnimalNameById(Integer x){
         Http http = new Http();
         HttpRequest req = new HttpRequest();
-        req.setEndpoint('https://th-apex-http-callout.herokuapp.com/animals/' + x);
+        req.setEndpoint( requestEndPoint + x);
         req.setMethod('GET');
         Map<String, Object> animal= new Map<String, Object>();
         HttpResponse res = http.send(req);
