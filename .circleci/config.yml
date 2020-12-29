@@ -5,7 +5,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image:  circleci/node:8.9.4
+      - image:  circleci/node:14.15.3
     
     steps:
       - checkout
@@ -18,7 +18,7 @@ jobs:
 
       - run:
           name: Install Salesforce Cli
-          command: npm install sfdx-cli --global
+          command: npm install sfdx-cli --global 
 
       - run:
           name: Decrypt server key
