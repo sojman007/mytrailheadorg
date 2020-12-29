@@ -28,11 +28,12 @@ jobs:
             sfdx
 
       - run:
-          name: Echo decryption key
-          command: echo $DECRYPT_KEY 
+          name: Display open ssl help
+          command: openssl help
+      
       - run:
-          name: Echo decryption key
-          command: echo $DECRYPT_IV 
+          name: Display open ssl  enc help
+          command: openssl enc -help
       
       # to be sure that circle ci is really using the environment variables 
       - run:
