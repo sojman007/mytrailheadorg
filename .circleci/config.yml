@@ -38,7 +38,7 @@ jobs:
             openssl enc -aes-256-cbc -d -nosalt -base64 -in assets/server.key.enc -out assets/server.key -K "$DKEY" -iv "$DIV"
       - run:
           name: Authorize To Target Org
-          command: sfdx force:auth:jwt:grant --instanceurl $ENDPOINT --clientid $CLIENT_ID --jwtkeyfile assets/server.key --username $USERNAME  --setalias ProdTest
+          command: sfdx force:auth:jwt:grant --instanceurl "$ENDPOINT" --clientid "$CLIENT_ID" --jwtkeyfile assets/server.key --username "$USERNAME"  --setalias ProdTest
 
       - run:
           name: Echo Got Here
