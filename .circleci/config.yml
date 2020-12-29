@@ -32,14 +32,14 @@ jobs:
           command: openssl help
       
       - run:
-          name: Display open ssl  enc help
-          command: openssl enc -help
+          name: Display open ssl  version
+          command: openssl version
       
       # to be sure that circle ci is really using the environment variables 
       - run:
           name: Decrypt server key
           command:
-            openssl enc -aes-256-cbc -nosalt -d -in assets/server.key.enc -out assets/server.key -base64 -K $DECRYPT_KEY -iv $DECRYPT_IV
+            openssl enc -aes-256-cbc -nosalt -d -in assets/server.key.enc -out assets/server.key -base64 -K $DECRYPT_KEY -iv $DECRYPT_IV -debug
       - run:
           name: Authorize To Target Org
           command: sfdx force:auth:jwt:grant --instanceurl $ENDPOINT --clientid $CLIENT_ID --jwtkeyfile assets/server.key --username $USERNAME  --setalias ProdTest
