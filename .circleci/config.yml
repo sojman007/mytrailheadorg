@@ -41,8 +41,8 @@ jobs:
           command: sfdx force:auth:jwt:grant --instanceurl "$ENDPOINT" --clientid "$CLIENT_ID" --jwtkeyfile assets/server.key --username "$USERNAME"  --setalias ProdTest
 
       - run:
-          name: Echo Got Here
-          command: echo " We have reached here"        
+          name: view sub directories
+          command: ls        
 
 orbs:
   salesforce-sfdx: circleci/salesforce-sfdx@2.1.0
