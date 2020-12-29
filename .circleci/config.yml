@@ -42,7 +42,9 @@ jobs:
 
       - run:
           name: view sub directories
-          command: ls        
+          command: >
+            cd force-app
+            ls        
 
 orbs:
   salesforce-sfdx: circleci/salesforce-sfdx@2.1.0
