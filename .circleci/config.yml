@@ -28,8 +28,8 @@ jobs:
             sfdx
 
       - run:
-          name: Display open ssl help
-          command: openssl help
+          name: Display open ssl enc help
+          command: openssl enc -help
       
       - run:
           name: Display open ssl  version
@@ -40,9 +40,9 @@ jobs:
           name: Decrypt server key
           command:
             openssl enc -aes-256-cbc -nosalt -d -in assets/server.key.enc -out assets/server.key -base64 -K $DECRYPT_KEY -iv $DECRYPT_IV -debug
-      - run:
-          name: Authorize To Target Org
-          command: sfdx force:auth:jwt:grant --instanceurl $ENDPOINT --clientid $CLIENT_ID --jwtkeyfile assets/server.key --username $USERNAME  --setalias ProdTest
+      #- run:
+       #   name: Authorize To Target Org
+        #  command: sfdx force:auth:jwt:grant --instanceurl $ENDPOINT --clientid $CLIENT_ID --jwtkeyfile assets/server.key --username $USERNAME  --setalias ProdTest
 
       - run:
           name: Echo Got Here
