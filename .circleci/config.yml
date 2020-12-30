@@ -2,6 +2,8 @@
 version: 2.1
 # Use a package of configuration called an orb.
 
+#THIS JOB DEPLOYS TO PRODUCTION ONLY.  
+# it should only be  run when a PR has been made into the master branch from anywhere
 jobs:
   build:
     docker:
@@ -41,10 +43,22 @@ jobs:
           command: sfdx force:auth:jwt:grant --instanceurl "$ENDPOINT" --clientid "$CLIENT_ID" --jwtkeyfile assets/server.key --username "$USERNAME"  --setalias ProdTest
 
       - run:
-          name: view sub directories
-          command: >
-            cd force-app
-            ls        
+          name: Convert Source To Metadata Format
+          command: sfdx force:source:convert --rootdir force-app --outputdir tmp_convert         
+      - run:
+          name: Create release artifact [zip]
+          command: zip -r releaseartifact.zip tmp_convert
+      - run:
+          name: Delete metadata directory
+          command: rm tmp_convert
+      - run:
+          name: Deploy release artifact [zip]
+          command: sfdx force:mdapi:deploy --zipfile releaseartifact.zip --targetusername ProdTest --testlevel RunAllTests --checkonly
+      - run:
+          name: Delete release artifact after deploy
+          command: rm releaseartifact.zip 
+
+                  
 
 orbs:
   salesforce-sfdx: circleci/salesforce-sfdx@2.1.0
