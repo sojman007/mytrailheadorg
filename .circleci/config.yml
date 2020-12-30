@@ -54,6 +54,11 @@ jobs:
       - run:
           name: Deploy release artifact [zip]
           command: sfdx force:mdapi:deploy --zipfile releaseartifact.zip --targetusername ProdTest --testlevel RunAllTestsInOrg --checkonly
+      
+      - run:
+          name: Display deployment report
+          command: sfdx force:mdapi:deploy:report
+      
       - run:
           name: Delete release artifact after deploy
           command: rm releaseartifact.zip 
