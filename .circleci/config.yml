@@ -57,7 +57,7 @@ jobs:
       
       - run:
           name: Display deployment report
-          command: sfdx force:mdapi:deploy:report
+          command: sfdx force:mdapi:deploy:report -u ProdTest
       
       - run:
           name: Delete release artifact after deploy
