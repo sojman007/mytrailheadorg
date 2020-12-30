@@ -53,7 +53,7 @@ jobs:
           command: rm -r tmp_convert
       - run:
           name: Deploy release artifact [zip]
-          command: sfdx force:mdapi:deploy --zipfile releaseartifact.zip --targetusername ProdTest --testlevel RunAllTestsInOrg --checkonly
+          command: sfdx force:mdapi:deploy -w 100 --zipfile releaseartifact.zip --targetusername ProdTest --testlevel RunAllTestsInOrg --checkonly
       
       - run:
           name: Display deployment report
