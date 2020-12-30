@@ -50,7 +50,7 @@ jobs:
           command: zip -r releaseartifact.zip tmp_convert
       - run:
           name: Delete metadata directory
-          command: rm tmp_convert
+          command: rm -r tmp_convert
       - run:
           name: Deploy release artifact [zip]
           command: sfdx force:mdapi:deploy --zipfile releaseartifact.zip --targetusername ProdTest --testlevel RunAllTests --checkonly
